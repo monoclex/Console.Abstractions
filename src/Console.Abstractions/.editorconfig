@@ -6,7 +6,7 @@
 #Core editorconfig formatting - indentation
 
 #use hard tabs for indentation
-indent_style = tab
+indent_style = tabs
 
 #Formatting - organize using options
 

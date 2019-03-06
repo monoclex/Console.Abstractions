@@ -108,8 +108,7 @@ namespace Console.Abstractions.Tests
 			// i don't care
 			try
 			{
-				Func<Task> dontCare = async () => console.ReadKey(true);
-				Task.Run(() => dontCare());
+				Task.Run(async () => console.ReadKey(true));
 			}
 			catch
 			{

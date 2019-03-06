@@ -1,30 +1,34 @@
-﻿using JetBrains.Annotations;
+﻿// Copyright (c) 2019 Console.Abstractions. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System;
 
+using JetBrains.Annotations;
+
 namespace Console.Abstractions
 {
-    [PublicAPI]
-    public interface IConsole
-    {
-        [NotNull] string ReadLine();
+	[PublicAPI]
+	public interface IConsole
+	{
+		[NotNull]
+		string ReadLine();
 
-        ConsoleKeyInfo ReadKey(bool intercept);
+		ConsoleKeyInfo ReadKey(bool intercept);
 
-        void Write([NotNull] string line);
+		void Write([NotNull] string line);
 
-        void Clear();
+		void Clear();
 
-        int X { get; set; }
+		int X { get; set; }
 
-        int Y { get; set; }
+		int Y { get; set; }
 
-        int Width { get; }
+		int Width { get; }
 
-        int Height { get; }
+		int Height { get; }
 
-        ConsoleColor Foreground { get; set; }
+		ConsoleColor Foreground { get; set; }
 
-        ConsoleColor Background { get; set; }
-    }
+		ConsoleColor Background { get; set; }
+	}
 }
