@@ -12,7 +12,7 @@ namespace Console.Abstractions
 	{
 		ConsoleKeyInfo ReadKey(bool intercept);
 
-		void PutChar(char character, int x, int y, ConsoleColor foregroundColor, ConsoleColor backgroundColor);
+		void PutChar(char character, PutCharData putCharData);
 
 		int Width { get; }
 

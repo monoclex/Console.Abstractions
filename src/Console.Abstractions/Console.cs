@@ -11,30 +11,22 @@ namespace Console.Abstractions
 	{
 		public abstract ConsoleKeyInfo ReadKey(bool intercept);
 
-		public void PutChar(char character, int x, int y, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
+		public void PutChar(char character, PutCharData putCharData)
 		{
-			var oldX = X;
-			var oldY = Y;
-			var oldForeground = Foreground;
-			var oldBackground = Background;
+			var oldPutCharData = GetStateAsPutCharData();
 
-			X = x;
-			Y = y;
-			Foreground = foregroundColor;
-			Background = backgroundColor;
+			SetStateAsPutCharData(putCharData);
 
 			Write(character.ToString());
 
-			X = oldX;
-			Y = oldY;
-			Foreground = oldForeground;
-			Background = oldBackground;
+			SetStateAsPutCharData(oldPutCharData);
 		}
 
 		public abstract int Width { get; }
+
 		public abstract int Height { get; }
 
-        [NotNull] public abstract string ReadLine();
+		[NotNull] public abstract string ReadLine();
 
 		public abstract void Write([NotNull] string line);
 
@@ -47,5 +39,22 @@ namespace Console.Abstractions
 		public abstract ConsoleColor Foreground { get; set; }
 
 		public abstract ConsoleColor Background { get; set; }
+
+		public PutCharData GetStateAsPutCharData()
+			=> new PutCharData
+			{
+				X = X,
+				Y = Y,
+				Background = Background,
+				Foreground = Foreground
+			};
+
+		public void SetStateAsPutCharData(PutCharData putCharData)
+		{
+			X = putCharData.X;
+			Y = putCharData.Y;
+			Background = putCharData.Background;
+			Foreground = putCharData.Foreground;
+		}
 	}
 }
