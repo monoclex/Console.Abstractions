@@ -11,7 +11,7 @@ namespace Console.Abstractions.Tests
 		[Fact]
 		public void WriteLine()
 		{
-			var consoleMock = new Mock<IConsole>();
+			var consoleMock = new Mock<Console>();
 
 			consoleMock.Setup(c => c.Write("test")).Verifiable();
 			consoleMock.Setup(c => c.Write(Environment.NewLine)).Verifiable();
@@ -27,7 +27,7 @@ namespace Console.Abstractions.Tests
 		[Fact]
 		public void SetPosition()
 		{
-			var consoleMock = new Mock<IConsole>();
+			var consoleMock = new Mock<Console>();
 
 			consoleMock.SetupSet<int>(c => c.X = 9).Verifiable();
 			consoleMock.SetupSet<int>(c => c.Y = 2).Verifiable();

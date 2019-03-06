@@ -11,9 +11,9 @@ namespace Console.Abstractions
 	public static class ConsoleExtensions
 	{
 		[NotNull]
-		public static IConsole SetPosition
+		public static Console SetPosition
 		(
-			[NotNull] this IConsole console,
+			[NotNull] this Console console,
 			int x,
 			int y
 		)
@@ -24,9 +24,9 @@ namespace Console.Abstractions
 		}
 
 		[NotNull]
-		public static IConsole WriteLine
+		public static Console WriteLine
 		(
-			[NotNull] this IConsole console,
+			[NotNull] this Console console,
 			[NotNull] string line
 		)
 		{

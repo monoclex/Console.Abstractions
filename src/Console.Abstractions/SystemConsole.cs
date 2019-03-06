@@ -8,39 +8,39 @@ using JetBrains.Annotations;
 namespace Console.Abstractions
 {
 	[PublicAPI]
-	public class SystemConsole : IConsole
+	public class SystemConsole : Console
 	{
-		public string ReadLine() => System.Console.ReadLine();
+		public override string ReadLine() => System.Console.ReadLine() ?? "";
 
-		public ConsoleKeyInfo ReadKey(bool intercept) => System.Console.ReadKey(intercept);
+		public override ConsoleKeyInfo ReadKey(bool intercept) => System.Console.ReadKey(intercept);
 
-		public void Write(string line) => System.Console.Write(line);
+		public override void Write(string line) => System.Console.Write(line);
 
-		public void Clear() => System.Console.Clear();
+		public override void Clear() => System.Console.Clear();
 
-		public int X
+		public override int X
 		{
 			get => System.Console.CursorLeft;
 			set => System.Console.CursorLeft = value;
 		}
 
-		public int Y
+		public override int Y
 		{
 			get => System.Console.CursorTop;
 			set => System.Console.CursorTop = value;
 		}
 
-		public int Width => System.Console.WindowWidth;
+		public override int Width => System.Console.WindowWidth;
 
-		public int Height => System.Console.WindowHeight;
+		public override int Height => System.Console.WindowHeight;
 
-		public ConsoleColor Foreground
+		public override ConsoleColor Foreground
 		{
 			get => System.Console.ForegroundColor;
 			set => System.Console.ForegroundColor = value;
 		}
 
-		public ConsoleColor Background
+		public override ConsoleColor Background
 		{
 			get => System.Console.BackgroundColor;
 			set => System.Console.BackgroundColor = value;
