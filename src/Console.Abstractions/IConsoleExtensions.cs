@@ -77,7 +77,13 @@ namespace Console.Abstractions
 			return console;
 		}
 
-		private static void WrapValueLower(ref int value, int boundary, int modifier, Action onModification = null)
+		private static void WrapValueLower
+		(
+			ref int value,
+			int boundary,
+			int modifier,
+			Action onModification = null
+		)
 		{
 			while (value < boundary)
 			{
@@ -86,7 +92,13 @@ namespace Console.Abstractions
 			}
 		}
 
-		private static void WrapValueUpper(ref int value, int boundary, int modifier, Action onModification = null)
+		private static void WrapValueUpper
+		(
+			ref int value,
+			int boundary,
+			int modifier,
+			Action onModification = null
+		)
 		{
 			while (value >= boundary)
 			{
