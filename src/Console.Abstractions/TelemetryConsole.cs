@@ -31,11 +31,21 @@ namespace Console.Abstractions
 		public override string ReadLine()
 			=> _console.ReadLine();
 
+		public int WriteCalls { get; private set; }
+
 		public override void Write(char chr)
-			=> _console.Write(chr);
+		{
+			_console.Write(chr);
+
+			WriteCalls++;
+		}
 
 		public override void Write(string line)
-			=> _console.Write(line);
+		{
+			_console.Write(line);
+
+			WriteCalls++;
+		}
 
 		public override void Clear()
 			=> _console.Clear();

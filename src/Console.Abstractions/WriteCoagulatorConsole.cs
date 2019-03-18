@@ -55,7 +55,7 @@ namespace Console.Abstractions
 			get => _console.X;
 			set
 			{
-				Flush();
+                Flush();
 
 				_console.X = value;
             }
@@ -66,7 +66,7 @@ namespace Console.Abstractions
 			get => _console.Y;
 			set
 			{
-				Flush();
+                Flush();
 
 				_console.Y = value;
 			}
@@ -77,7 +77,7 @@ namespace Console.Abstractions
 			get => _console.Foreground;
 			set
 			{
-				Flush();
+                Flush();
 
 				_console.Foreground = value;
 			}
@@ -98,6 +98,11 @@ namespace Console.Abstractions
 
 		public void Flush()
 		{
+			if (_buffer.Length <= 0)
+			{
+				return;
+			}
+
 			_console.Write(_buffer.ToString());
 
 			_buffer.Clear();
