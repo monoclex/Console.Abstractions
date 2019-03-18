@@ -7,9 +7,19 @@ using JetBrains.Annotations;
 
 namespace Console.Abstractions
 {
+	/// <summary>
+    /// Simple extensions for a <see cref="Console"/>
+    /// </summary>
 	[PublicAPI]
 	public static class ConsoleExtensions
 	{
+		/// <summary>
+        /// Sets the cursor position.
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <param name="x">The X.</param>
+        /// <param name="y">The Y.</param>
+        /// <returns>The same console.</returns>
 		[NotNull]
 		public static Console SetPosition
 		(
@@ -23,6 +33,12 @@ namespace Console.Abstractions
 			return console;
 		}
 
+		/// <summary>
+        /// Writes a line to the console.
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <param name="line">The line to write.</param>
+        /// <returns>The same console.</returns>
 		[NotNull]
 		public static Console WriteLine
 		(

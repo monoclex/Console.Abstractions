@@ -2,17 +2,31 @@
 using System.Collections.Generic;
 using System.Text;
 
+using JetBrains.Annotations;
+
 namespace Console.Abstractions
 {
+	/// <summary>
+	/// Allows an area of the original console to be drawn on.
+    /// </summary>
+	[PublicAPI]
     public class ConsolePiece : IConsole
     {
-		private readonly IConsole _console;
+		[NotNull] private readonly IConsole _console;
 		private readonly int _sourceX;
 		private readonly int _sourceY;
 
-		public ConsolePiece
+        /// <summary>
+        /// Creates a <see cref="ConsolePiece"/>
+        /// </summary>
+        /// <param name="console">The main console.</param>
+        /// <param name="sourceX">The X position of the real console.</param>
+        /// <param name="sourceY">The Y position of the real console.</param>
+        /// <param name="sourceWidth">The width of the console piece.</param>
+        /// <param name="sourceHeight">The height of the console piece.</param>
+        public ConsolePiece
 		(
-			IConsole console,
+			[NotNull] IConsole console,
 			int sourceX,
 			int sourceY,
 			int sourceWidth,
@@ -27,10 +41,12 @@ namespace Console.Abstractions
 			Height = sourceHeight;
 		}
 
-		public ConsoleKeyInfo ReadKey(bool intercept)
+		/// <inheritdoc/>
+        public ConsoleKeyInfo ReadKey(bool intercept)
 			=> _console.ReadKey(intercept);
 
-		public void PutChar(char character, PutCharData putCharData)
+		/// <inheritdoc/>
+        public void PutChar(char character, PutCharData putCharData)
 			=> _console.PutChar(character, new PutCharData
 			{
 				X = putCharData.X + _sourceX,
@@ -39,7 +55,10 @@ namespace Console.Abstractions
 				Foreground = putCharData.Foreground
 			});
 
-		public int Width { get; }
-		public int Height { get; }
+		/// <inheritdoc/>
+        public int Width { get; }
+
+		/// <inheritdoc/>
+        public int Height { get; }
 	}
 }

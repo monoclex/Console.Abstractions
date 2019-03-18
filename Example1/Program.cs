@@ -11,7 +11,7 @@ namespace Example1
 		static void Main(string[] args)
 		{
 			var sysConsole = new SystemConsole();
-			var console = Helpers.CacheEnMasse(sysConsole, out var sysTelemetry, out var frontTelemetry);
+			var console = sysConsole; // Helpers.CacheEnMasse(sysConsole, out var sysTelemetry, out var frontTelemetry);
 
 			var i = 0;
 			bool toggle = false;
@@ -46,7 +46,7 @@ namespace Example1
 
 				DrawBorder(new ConsolePiece(console, 5 + i, 5, 5, 5), ConsoleColor.DarkRed, ConsoleColor.Red);
 
-				console.Flush();
+				// console.Flush();
 			}
 
 			console.ReadKey(true);
@@ -56,12 +56,12 @@ namespace Example1
 			sysConsole.Y = 0;
 			sysConsole.Background = ConsoleColor.Black;
 			sysConsole.Foreground = ConsoleColor.Gray;
-
+			/*
 			sysConsole.Write("System WriteCalls: " + sysTelemetry.WriteCalls + "\r\n");
 			sysConsole.Write("Front-end write calls:" + frontTelemetry.WriteCalls + "\r\n");
 			sysConsole.Write("System Telemetry: " + sysTelemetry + "\r\n");
 			sysConsole.Write("Front-end Telemetry: " + frontTelemetry + "\r\n");
-
+			*/
 			sysConsole.ReadKey(true);
 		}
 

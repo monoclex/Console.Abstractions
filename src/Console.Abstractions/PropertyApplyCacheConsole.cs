@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using JetBrains.Annotations;
+
 namespace Console.Abstractions
 {
 	/// <summary>
@@ -9,27 +11,36 @@ namespace Console.Abstractions
     /// </summary>
 	public class PropertyApplyCacheConsole : Console
 	{
-		private readonly Console _console;
+		[NotNull] private readonly Console _console;
 
-		public PropertyApplyCacheConsole(PropertyCacheConsole propertyCacheConsole)
+		/// <summary>
+        /// Creates a new <see cref="PropertyApplyCacheConsole"/>
+        /// </summary>
+        /// <param name="propertyCacheConsole"></param>
+		public PropertyApplyCacheConsole([NotNull] PropertyCacheConsole propertyCacheConsole)
 			: this((Console)propertyCacheConsole)
 		{
 		}
 
+		/// <summary>
+        /// Most likely the incorrect method to use.
+        /// This class is designed in mind to be used
+        /// with a <see cref="PropertyCacheConsole"/>,
+        /// so it may be in your best interests to use both.
+        /// </summary>
+        /// <param name="console">The console to use.</param>
 		[Obsolete("You might be using the PropertyApplyCacheConsole incorrently."
 			+ "Try paas in a PropertyCacheConsole instead to the constructor,"
 			+ "instead of using the generic Console constructor, as that's the ideal usage.")]
-		public PropertyApplyCacheConsole(Console console)
+		public PropertyApplyCacheConsole([NotNull] Console console)
 		{
             _console = console;
-
-			Width = _console.Width;
-			Height = _console.Height;
 
 			GetProperties();
 		}
 
-		public override ConsoleKeyInfo ReadKey(bool intercept)
+		/// <inheritdoc/>
+        public override ConsoleKeyInfo ReadKey(bool intercept)
 		{
 			SetProperties();
 
@@ -40,10 +51,14 @@ namespace Console.Abstractions
 			return result;
 		}
 
-		public override int Width { get; }
-		public override int Height { get; }
+		/// <inheritdoc/>
+		public override int Width => _console.Width;
 
-		public override string ReadLine()
+		/// <inheritdoc/>
+		public override int Height => _console.Height;
+
+		/// <inheritdoc/>
+        public override string ReadLine()
 		{
 			SetProperties();
 
@@ -54,7 +69,8 @@ namespace Console.Abstractions
 			return result;
 		}
 
-		public override void Write(char chr)
+		/// <inheritdoc/>
+        public override void Write(char chr)
 		{
 			SetProperties();
 
@@ -63,7 +79,8 @@ namespace Console.Abstractions
 			GetProperties();
         }
 
-		public override void Write(string line)
+		/// <inheritdoc/>
+        public override void Write(string line)
 		{
 			SetProperties();
 
@@ -72,7 +89,8 @@ namespace Console.Abstractions
 			GetProperties();
         }
 
-		public override void Clear()
+		/// <inheritdoc/>
+        public override void Clear()
 		{
 			SetProperties();
 
@@ -81,10 +99,17 @@ namespace Console.Abstractions
 			GetProperties();
         }
 
-		public override int X { get; set; }
-		public override int Y { get; set; }
-		public override ConsoleColor Foreground { get; set; }
-		public override ConsoleColor Background { get; set; }
+		/// <inheritdoc/>
+        public override int X { get; set; }
+
+		/// <inheritdoc/>
+        public override int Y { get; set; }
+
+		/// <inheritdoc/>
+        public override ConsoleColor Foreground { get; set; }
+
+		/// <inheritdoc/>
+        public override ConsoleColor Background { get; set; }
 
 		private void GetProperties()
 		{

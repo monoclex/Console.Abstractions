@@ -7,13 +7,29 @@ using JetBrains.Annotations;
 
 namespace Console.Abstractions
 {
+	/// <summary>
+    /// Extensions for an <see cref="IConsole"/>
+    /// </summary>
 	[PublicAPI]
 	public static class IConsoleExtensions
 	{
-		public static IConsole Clear(this IConsole console, PutCharData clearData, char clearChar = ' ')
+		/// <summary>
+        /// Clears the console, by writing a giant blank string to it.
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <param name="clearData">Data about the clear.</param>
+        /// <param name="clearChar">The character to use when clearing.</param>
+        /// <returns>The same console.</returns>
+		public static IConsole Clear
+		(
+			[NotNull] this IConsole console,
+			PutCharData clearData,
+			char clearChar = ' '
+		)
 		{
 			if (console is Console sysConsole)
 			{
+				sysConsole.SetStateAsPutCharData(clearData);
 				sysConsole.Clear();
 			}
 			else
@@ -25,10 +41,17 @@ namespace Console.Abstractions
 			return console;
 		}
 
+		/// <summary>
+        /// Writes a line with the string given to the console.
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <param name="str">The string.</param>
+        /// <param name="putCharData">Data about the line.</param>
+        /// <returns>The same console.</returns>
 		public static IConsole WriteLine
 		(
-			this IConsole console,
-			string str,
+			[NotNull] this IConsole console,
+			[NotNull] string str,
 			PutCharData putCharData
 		)
 		{
@@ -52,10 +75,17 @@ namespace Console.Abstractions
 				});
 		}
 
+		/// <summary>
+        /// Writes a string to the console.
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <param name="str">The string.</param>
+        /// <param name="putCharData">Data about the string.</param>
+        /// <returns>The same console.</returns>
 		public static IConsole Write
 		(
-			this IConsole console,
-			string str,
+			[NotNull] this IConsole console,
+			[NotNull] string str,
 			PutCharData putCharData
 		)
 		{
@@ -87,9 +117,19 @@ namespace Console.Abstractions
 			return console;
 		}
 
+		/// <summary>
+        /// Puts a single character on the console
+        /// at any given X or Y, negative or positive,
+        /// by wrapping the coordinates around until
+        /// they're in bounds.
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <param name="character">The character to put.</param>
+        /// <param name="putCharData">Data about the character.</param>
+        /// <returns>The same console.</returns>
 		public static IConsole PutCharWithWrapping
 		(
-			this IConsole console,
+			[NotNull] this IConsole console,
 			char character,
 			PutCharData putCharData
 		)

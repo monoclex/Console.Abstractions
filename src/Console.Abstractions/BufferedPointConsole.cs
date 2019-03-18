@@ -1,12 +1,23 @@
 ﻿using System;
 
+using JetBrains.Annotations;
+
 namespace Console.Abstractions
 {
+	/// <summary>
+    /// Used for writing a bunch of data in random places to the console,
+    /// and then upon flushing it, all the changed data gets written sequentially.
+    /// </summary>
+	[PublicAPI]
 	public class BufferedPointConsole : IConsole, IFlushable
 	{
-		private readonly IConsole _console;
+		[NotNull] private readonly IConsole _console;
 
-		public BufferedPointConsole(IConsole console)
+		/// <summary>
+        /// Creates a new buffered point console.
+        /// </summary>
+        /// <param name="console">Where to flush data to.</param>
+		public BufferedPointConsole([NotNull] IConsole console)
 		{
 			_console = console;
 
@@ -20,12 +31,18 @@ namespace Console.Abstractions
 		}
 
         private BufferState[,] _previousBuffer;
+
+		/// <summary>
+        /// The current buffer in use for writing data.
+        /// </summary>
 		public BufferState[,] CurrentBuffer;
 
+		/// <inheritdoc/>
 		public ConsoleKeyInfo ReadKey(bool intercept)
 			=> _console.ReadKey(intercept);
 
-		public void PutChar(char character, PutCharData putCharData)
+		/// <inheritdoc/>
+        public void PutChar(char character, PutCharData putCharData)
 		{
 			CurrentBuffer[putCharData.X, putCharData.Y] = new BufferState
 			{
@@ -34,10 +51,14 @@ namespace Console.Abstractions
 			};
 		}
 
-		public int Width => _console.Width;
-		public int Height => _console.Height;
+		/// <inheritdoc/>
+        public int Width => _console.Width;
 
-		public void Flush()
+		/// <inheritdoc/>
+        public int Height => _console.Height;
+
+		/// <inheritdoc/>
+        public void Flush()
 		{
             SwapBuffers();
 

@@ -4,14 +4,29 @@ using System.Text;
 
 namespace Console.Abstractions
 {
+	/// <summary>
+    /// Information about where to place items on a console.
+    /// </summary>
     public struct PutCharData : IEquatable<PutCharData>
     {
+		/// <summary>
+        /// The X-position, zero-indexed starting from the left-hand side of the screen.
+        /// </summary>
 	    public int X;
 
+		/// <summary>
+        /// The Y-position, zero-indexed starting from the top of the screen.
+        /// </summary>
 		public int Y;
 
+		/// <summary>
+        /// The background color of this character.
+        /// </summary>
 		public ConsoleColor Background;
 
+		/// <summary>
+        /// The foreground color of this character.
+        /// </summary>
         public ConsoleColor Foreground;
 
 		public bool Equals(PutCharData other)

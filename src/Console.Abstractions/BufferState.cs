@@ -2,23 +2,35 @@
 
 namespace Console.Abstractions
 {
+	/// <summary>
+    /// A state of some item in the buffer.
+    /// </summary>
 	public struct BufferState : IEquatable<BufferState>
 	{
+		/// <summary>
+        /// The character it is.
+        /// </summary>
 		public char Character;
 
+		/// <summary>
+        /// Info used for writing the char
+        /// </summary>
 		public PutCharData PutCharData;
 
+		/// <inheritdoc/>
 		public bool Equals(BufferState other)
 			=> Character == other.Character && PutCharData.Equals(other.PutCharData);
 
-		public override bool Equals(object obj)
+		/// <inheritdoc/>
+        public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 
 			return obj is BufferState other && Equals(other);
 		}
 
-		public override int GetHashCode()
+		/// <inheritdoc/>
+        public override int GetHashCode()
 		{
 			unchecked
 			{

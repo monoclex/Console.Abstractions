@@ -7,42 +7,56 @@ using JetBrains.Annotations;
 
 namespace Console.Abstractions
 {
+	/// <summary>
+    /// The most direct interface with <see cref="System.Console"/> possible.
+    /// </summary>
 	[PublicAPI]
 	public class SystemConsole : Console
 	{
-		public override string ReadLine() => System.Console.ReadLine() ?? "";
+		/// <inheritdoc/>
+        public override string ReadLine() => System.Console.ReadLine() ?? "";
 
-		public override ConsoleKeyInfo ReadKey(bool intercept) => System.Console.ReadKey(intercept);
+		/// <inheritdoc/>
+        public override ConsoleKeyInfo ReadKey(bool intercept) => System.Console.ReadKey(intercept);
 
-		public override void Write(char chr) => System.Console.Write(chr);
+		/// <inheritdoc/>
+        public override void Write(char chr) => System.Console.Write(chr);
 
-		public override void Write(string line) => System.Console.Write(line);
+		/// <inheritdoc/>
+        public override void Write(string line) => System.Console.Write(line);
 
-		public override void Clear() => System.Console.Clear();
+		/// <inheritdoc/>
+        public override void Clear() => System.Console.Clear();
 
-		public override int X
+		/// <inheritdoc/>
+        public override int X
 		{
 			get => System.Console.CursorLeft;
 			set => System.Console.CursorLeft = value;
 		}
 
-		public override int Y
+		/// <inheritdoc/>
+        public override int Y
 		{
 			get => System.Console.CursorTop;
 			set => System.Console.CursorTop = value;
 		}
 
-		public override int Width => System.Console.WindowWidth;
+		/// <inheritdoc/>
+        public override int Width => System.Console.WindowWidth;
 
-		public override int Height => System.Console.WindowHeight;
+		/// <inheritdoc/>
+        public override int Height => System.Console.WindowHeight;
 
-		public override ConsoleColor Foreground
+		/// <inheritdoc/>
+        public override ConsoleColor Foreground
 		{
 			get => System.Console.ForegroundColor;
 			set => System.Console.ForegroundColor = value;
 		}
 
-		public override ConsoleColor Background
+		/// <inheritdoc/>
+        public override ConsoleColor Background
 		{
 			get => System.Console.BackgroundColor;
 			set => System.Console.BackgroundColor = value;

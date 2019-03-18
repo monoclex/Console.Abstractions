@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
+using JetBrains.Annotations;
+
 namespace Console.Abstractions
 {
+	/// <summary>
+    /// Provides telemetry info about the calls made to the console passed to it.
+    /// </summary>
     public class TelemetryConsole : Console
     {
-		private readonly Console _console;
+		[NotNull] private readonly Console _console;
 
-		public TelemetryConsole(Console console)
+		public TelemetryConsole([NotNull] Console console)
 		{
 			_console = console;
 
@@ -21,68 +26,95 @@ namespace Console.Abstractions
 			BackgroundTelemetry = new Telemetry<ConsoleColor>(() => _console.Background, value => _console.Background = value);
         }
 
-		public override ConsoleKeyInfo ReadKey(bool intercept)
+		/// <inheritdoc/>
+        public override ConsoleKeyInfo ReadKey(bool intercept)
 			=> _console.ReadKey(intercept);
 
-		public override int Width { get; }
+		/// <inheritdoc/>
+        public override int Width { get; }
 
-		public override int Height { get; }
+		/// <inheritdoc/>
+        public override int Height { get; }
 
-		public override string ReadLine()
+		/// <inheritdoc/>
+        public override string ReadLine()
 			=> _console.ReadLine();
 
+		/// <summary>
+        /// The amount of calls made to the Write function.
+        /// </summary>
 		public int WriteCalls { get; private set; }
 
-		public override void Write(char chr)
+		/// <inheritdoc/>
+        public override void Write(char chr)
 		{
 			_console.Write(chr);
 
 			WriteCalls++;
 		}
 
-		public override void Write(string line)
+		/// <inheritdoc/>
+        public override void Write(string line)
 		{
 			_console.Write(line);
 
 			WriteCalls++;
 		}
 
-		public override void Clear()
+		/// <inheritdoc/>
+        public override void Clear()
 			=> _console.Clear();
 
+		/// <summary>
+        /// Telemetry data about <see cref="X"/>
+        /// </summary>
 		public Telemetry<int> XTelemetry { get; }
 
-		public override int X
+		/// <inheritdoc/>
+        public override int X
 		{
 			get => XTelemetry.Get();
 			set => XTelemetry.Set(value);
 		}
 
+		/// <summary>
+        /// Telemetry data about <see cref="Y"/>
+        /// </summary>
 		public Telemetry<int> YTelemetry { get; }
 
-		public override int Y
+		/// <inheritdoc/>
+        public override int Y
 		{
 			get => YTelemetry.Get();
 			set => YTelemetry.Set(value);
 		}
 
+		/// <summary>
+        /// Telemetry data about <see cref="Foreground"/>
+        /// </summary>
 		public Telemetry<ConsoleColor> ForegroundTelemetry { get; }
 
-		public override ConsoleColor Foreground
+		/// <inheritdoc/>
+        public override ConsoleColor Foreground
 		{
 			get => ForegroundTelemetry.Get();
 			set => ForegroundTelemetry.Set(value);
 		}
 
+		/// <summary>
+        /// Telemetry data about <see cref="Background"/>
+        /// </summary>
 		public Telemetry<ConsoleColor> BackgroundTelemetry { get; }
 
-		public override ConsoleColor Background
+		/// <inheritdoc/>
+        public override ConsoleColor Background
 		{
 			get => BackgroundTelemetry.Get();
 			set => BackgroundTelemetry.Set(value);
 		}
 
-		public override string ToString()
+		/// <inheritdoc/>
+        public override string ToString()
 			=> $@"Telemetry:
 	X: {XTelemetry}
 	Y: {YTelemetry}
@@ -90,21 +122,41 @@ namespace Console.Abstractions
 	Background: {BackgroundTelemetry}";
 	}
 
+	/// <summary>
+    /// Simple telemetry class for recording amount of calls made.
+    /// </summary>
+    /// <typeparam name="T">The type of data going through.</typeparam>
 	public class Telemetry<T>
 	{
-		private readonly Func<T> _onGet;
-		private readonly Action<T> _onSet;
+		[NotNull] private readonly Func<T> _onGet;
+		[NotNull] private readonly Action<T> _onSet;
 
-		public Telemetry(Func<T> onGet, Action<T> onSet)
+		/// <summary>
+        /// Creates a new instance of <see cref="Telemetry{T}"/>
+        /// with the code to run on a get or set.
+        /// </summary>
+        /// <param name="onGet">Function to run on get.</param>
+        /// <param name="onSet">Function to run on set.</param>
+		public Telemetry([NotNull] Func<T> onGet, [NotNull] Action<T> onSet)
 		{
 			_onGet = onGet;
 			_onSet = onSet;
 		}
 
+		/// <summary>
+        /// The amount of calls made to the getter.
+        /// </summary>
 		public int GetterCalls { get; private set; }
 
+		/// <summary>
+        /// The amount of calls made to the setter.
+        /// </summary>
 		public int SetterCalls { get; private set; }
 
+		/// <summary>
+        /// Make a call to the getter.
+        /// </summary>
+        /// <returns>The value the getter returned.</returns>
 		public T Get()
 		{
 			GetterCalls++;
@@ -112,6 +164,10 @@ namespace Console.Abstractions
 			return _onGet();
 		}
 
+		/// <summary>
+        /// Make a call to the setter.
+        /// </summary>
+        /// <param name="value">The value the setter returned.</param>
 		public void Set(T value)
 		{
 			SetterCalls++;
@@ -119,7 +175,8 @@ namespace Console.Abstractions
 			_onSet(value);
 		}
 
-		public override string ToString()
+		/// <inheritdoc/>
+        public override string ToString()
 			=> $"Getter Calls: {GetterCalls}, Setter Calls: {SetterCalls}";
 	}
 }

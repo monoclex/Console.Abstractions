@@ -1,15 +1,23 @@
 ﻿using System;
 
+using JetBrains.Annotations;
+
 namespace Console.Abstractions
 {
 	/// <summary>
-	/// Caches the properties of the console, and only writes them to the console when they change.
+	/// Caches the properties of the given console,
+	/// and only updates them when they change.
 	/// </summary>
 	public class PropertyCacheConsole : Console
 	{
-		private readonly Console _console;
+		[NotNull] private readonly Console _console;
 
-		public PropertyCacheConsole(Console console)
+		/// <summary>
+        /// Create a new <see cref="PropertyCacheConsole"/>
+        /// to cache the properties of the console.
+        /// </summary>
+        /// <param name="console">The console to use.</param>
+		public PropertyCacheConsole([NotNull] Console console)
 		{
 			_console = console;
 
@@ -22,7 +30,8 @@ namespace Console.Abstractions
 			_background = _console.Background;
 		}
 
-		public override ConsoleKeyInfo ReadKey(bool intercept)
+		/// <inheritdoc/>
+        public override ConsoleKeyInfo ReadKey(bool intercept)
 		{
 			var result = _console.ReadKey(intercept);
 
@@ -34,7 +43,8 @@ namespace Console.Abstractions
 			return result;
 		}
 
-		public override string ReadLine()
+		/// <inheritdoc/>
+        public override string ReadLine()
 		{
             var read = _console.ReadLine();
 
@@ -43,14 +53,16 @@ namespace Console.Abstractions
 			return read;
 		}
 
-		public override void Write(char chr)
+		/// <inheritdoc/>
+        public override void Write(char chr)
 		{
             UpdateScreenXBy(1);
 
 			_console.Write(chr);
 		}
 
-		public override void Write(string line)
+		/// <inheritdoc/>
+        public override void Write(string line)
 		{
             // just to update the x so we don't update it every time
 			UpdateScreenXBy(line.Length);
@@ -58,7 +70,8 @@ namespace Console.Abstractions
 			_console.Write(line);
 		}
 
-		public override void Clear()
+		/// <inheritdoc/>
+        public override void Clear()
 		{
 			_console.Clear();
 
@@ -66,12 +79,16 @@ namespace Console.Abstractions
 			_y = 0;
 		}
 
-		public override int Width { get; }
-		public override int Height { get; }
+		/// <inheritdoc/>
+        public override int Width { get; }
+
+		/// <inheritdoc/>
+        public override int Height { get; }
 
 		private int _x;
 
-		public override int X
+		/// <inheritdoc/>
+        public override int X
 		{
 			get => _x;
 			set
@@ -85,7 +102,8 @@ namespace Console.Abstractions
 
 		private int _y;
 
-		public override int Y
+		/// <inheritdoc/>
+        public override int Y
 		{
 			get => _y;
 			set
@@ -99,7 +117,8 @@ namespace Console.Abstractions
 
 		private ConsoleColor _foreground;
 
-		public override ConsoleColor Foreground
+		/// <inheritdoc/>
+        public override ConsoleColor Foreground
 		{
 			get => _foreground;
 			set
@@ -113,7 +132,8 @@ namespace Console.Abstractions
 
 		private ConsoleColor _background;
 
-		public override ConsoleColor Background
+		/// <inheritdoc/>
+        public override ConsoleColor Background
 		{
 			get => _background;
 			set

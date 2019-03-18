@@ -2,55 +2,71 @@
 using System.Collections.Generic;
 using System.Text;
 
+using JetBrains.Annotations;
+
 namespace Console.Abstractions
 {
 	/// <summary>
-    /// Coagulates single Write calls into a single big Write call
+    /// Coagulates a bunch of Write calls into a single write call
+    /// to minimize on the amount of calls.
     /// </summary>
 	public class WriteCoagulatorConsole : Console, IFlushable
 	{
-		private readonly Console _console;
+		[NotNull] private readonly Console _console;
 
-		public WriteCoagulatorConsole(Console console)
+		/// <summary>
+        /// Creates a new <see cref="WriteCoagulatorConsole"/> with the console.
+        /// </summary>
+        /// <param name="console">The console to coagulate write calls on.</param>
+		public WriteCoagulatorConsole([NotNull] Console console)
 		{
 			_console = console;
 		}
 
-		public override ConsoleKeyInfo ReadKey(bool intercept)
+		/// <inheritdoc/>
+        public override ConsoleKeyInfo ReadKey(bool intercept)
 		{
 			Flush();
 
 			return _console.ReadKey(intercept);
 		}
 
-		public override int Width => _console.Width;
-		public override int Height => _console.Height;
+		/// <inheritdoc/>
+        public override int Width => _console.Width;
 
-		public override string ReadLine()
+		/// <inheritdoc/>
+        public override int Height => _console.Height;
+
+		/// <inheritdoc/>
+        public override string ReadLine()
 		{
 			Flush();
 
 			return _console.ReadLine();
 		}
 
-		public override void Write(char chr)
+		/// <inheritdoc/>
+        public override void Write(char chr)
 		{
 			_buffer.Append(chr);
 		}
 
-		public override void Write(string line)
+		/// <inheritdoc/>
+        public override void Write(string line)
 		{
 			_buffer.Append(line);
 		}
 
-		public override void Clear()
+		/// <inheritdoc/>
+        public override void Clear()
 		{
 			_console.Clear();
 
 			_buffer.Clear();
 		}
 
-		public override int X
+		/// <inheritdoc/>
+        public override int X
 		{
 			get => _console.X;
 			set
@@ -61,7 +77,8 @@ namespace Console.Abstractions
             }
 		}
 
-		public override int Y
+		/// <inheritdoc/>
+        public override int Y
 		{
 			get => _console.Y;
 			set
@@ -72,7 +89,8 @@ namespace Console.Abstractions
 			}
 		}
 
-		public override ConsoleColor Foreground
+		/// <inheritdoc/>
+        public override ConsoleColor Foreground
 		{
 			get => _console.Foreground;
 			set
@@ -83,7 +101,8 @@ namespace Console.Abstractions
 			}
 		}
 
-		public override ConsoleColor Background
+		/// <inheritdoc/>
+        public override ConsoleColor Background
 		{
 			get => _console.Background;
 			set
@@ -96,7 +115,8 @@ namespace Console.Abstractions
 
 		private StringBuilder _buffer = new StringBuilder(0xFFFF);
 
-		public void Flush()
+		/// <inheritdoc/>
+        public void Flush()
 		{
 			// the fg will get set, then the bg
 			// they will both trigger flush
