@@ -16,10 +16,10 @@ namespace Console.Abstractions
 			Width = _console.Width;
 			Height = _console.Height;
 
-			X = _console.X;
-			Y = _console.Y;
-			Foreground = _console.Foreground;
-			Background = _console.Background;
+			_x = _console.X;
+			_y = _console.Y;
+			_foreground = _console.Foreground;
+			_background = _console.Background;
 		}
 
 		public override ConsoleKeyInfo ReadKey(bool intercept)
@@ -59,7 +59,12 @@ namespace Console.Abstractions
 		}
 
 		public override void Clear()
-			=> _console.Clear();
+		{
+			_console.Clear();
+
+			_x = 0;
+			_y = 0;
+		}
 
 		public override int Width { get; }
 		public override int Height { get; }
@@ -74,11 +79,11 @@ namespace Console.Abstractions
 				if (value == _x) return;
 
 				_x = value;
+				_console.X = value;
 			}
 		}
 
 		private int _y;
-		private int _pendingY;
 
 		public override int Y
 		{

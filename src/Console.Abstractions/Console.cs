@@ -13,13 +13,13 @@ namespace Console.Abstractions
 
 		public void PutChar(char character, PutCharData putCharData)
 		{
-			// var oldPutCharData = GetStateAsPutCharData();
+			var oldPutCharData = GetStateAsPutCharData();
 
 			SetStateAsPutCharData(putCharData);
 
-			Write(character.ToString());
+			Write(character);
 
-			// SetStateAsPutCharData(oldPutCharData);
+			SetStateAsPutCharData(oldPutCharData);
 		}
 
 		public abstract int Width { get; }
@@ -28,12 +28,10 @@ namespace Console.Abstractions
 
 		[NotNull] public abstract string ReadLine();
 
-		public virtual void Write([NotNull] char chr)
-		{
-			Write(chr.ToString());
-		}
+        public virtual void Write(char chr)
+			=> Write(chr.ToString());
 
-		public abstract void Write([NotNull] string line);
+        public abstract void Write([NotNull] string line);
 
 		public abstract void Clear();
 

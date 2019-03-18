@@ -26,7 +26,7 @@ namespace Console.Abstractions
 			Width = _console.Width;
 			Height = _console.Height;
 
-			SetProperties();
+			GetProperties();
 		}
 
 		public override ConsoleKeyInfo ReadKey(bool intercept)

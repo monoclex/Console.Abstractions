@@ -19,19 +19,20 @@ namespace Example1
 				.Aggregate((a, b) => $"[{a}, {b}]");
 
 			bool toggle = false;
-			for(var i = 0; i < 1000; i++)
+			for(var i = 0; i < 101; i++)
 			{
 				toggle = !toggle;
 
-				console.WriteLine(msg, new PutCharData
+				console.Write(msg, new PutCharData
 				{
-					Background = toggle ? ConsoleColor.Black : ConsoleColor.White,
-					Foreground = toggle ? ConsoleColor.White : ConsoleColor.Black,
+					Background = ConsoleColor.DarkGreen,
+					Foreground = ConsoleColor.Green,
 					X = 0,
 					Y = 0
 				});
 			}
 
+			console.Clear();
 			console.X = 0;
 			console.Y = 0;
 
