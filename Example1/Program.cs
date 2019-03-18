@@ -7,24 +7,19 @@ namespace Example1
 {
 	class Program
 	{
-		static IConsole GetConsole()
-			=> new PropertyApplyCacheConsole
-			(
-				new PropertyCacheConsole
-				(
-					new SystemConsole()
-				)
-			);
-
 		static void Main(string[] args)
 		{
-			var console = GetConsole();
+			var sysConsole = new SystemConsole();
+			var sysTelemetry = new TelemetryConsole(sysConsole);
+			var cache = new PropertyApplyCacheConsole(new PropertyCacheConsole(sysTelemetry));
+			var frontTelemetry = new TelemetryConsole(cache);
+			Console.Abstractions.Console console = frontTelemetry;
 
 			var msg = Enumerable.Repeat("Hello, World!", 20)
 				.Aggregate((a, b) => $"[{a}, {b}]");
 
 			bool toggle = false;
-			while (true)
+			for(var i = 0; i < 1000; i++)
 			{
 				toggle = !toggle;
 
@@ -36,6 +31,12 @@ namespace Example1
 					Y = 0
 				});
 			}
+
+			console.X = 0;
+			console.Y = 0;
+
+			sysConsole.Write("System " + sysTelemetry + "\r\n");
+			sysConsole.Write("Front  " + frontTelemetry + "\r\n");
 
 			console.ReadKey(true);
 		}
