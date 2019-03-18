@@ -19,7 +19,8 @@ namespace Console.Abstractions
 
 		public override bool Equals(object obj)
 		{
-			if (ReferenceEquals(null, obj)) return false;
+			// only because people on a discord server held a gun to my head
+			// if (ReferenceEquals(null, obj)) return false;
 
 			return obj is PutCharData other && Equals(other);
 		}

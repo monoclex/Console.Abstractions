@@ -98,6 +98,12 @@ namespace Console.Abstractions
 
 		public void Flush()
 		{
+			// the fg will get set, then the bg
+			// they will both trigger flush
+			// so this is needed to not trigger flush
+			// if there's nothing to flush
+			// prevents empty write calls
+
 			if (_buffer.Length <= 0)
 			{
 				return;

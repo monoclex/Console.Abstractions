@@ -16,7 +16,7 @@ namespace Example1
 			var i = 0;
 			bool toggle = false;
 
-			for(var ___ = 0; ___ < 200; ___++)
+			for (var ___ = 0; ___ < 200; ___++)
 			{
 				if (i == 60 || i == 0)
 				{
@@ -32,7 +32,7 @@ namespace Example1
 					i--;
 				}
 
-			console.Clear(new PutCharData
+				console.Clear(new PutCharData
 				{
 					Background = ConsoleColor.Black,
 					Foreground = ConsoleColor.Gray,
@@ -125,6 +125,7 @@ namespace Example1
 				Background = bg,
 				Foreground = fg
 			});
+
 			console.Write("+", new PutCharData
 			{
 				X = 0,
