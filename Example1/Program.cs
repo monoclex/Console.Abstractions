@@ -19,7 +19,7 @@ namespace Example1
 				.Aggregate((a, b) => $"[{a}, {b}]");
 
 			bool toggle = false;
-			for(var i = 0; i < 101; i++)
+			for(var i = 0; i < 1001; i++)
 			{
 				toggle = !toggle;
 

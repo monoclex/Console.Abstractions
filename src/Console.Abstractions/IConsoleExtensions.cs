@@ -20,15 +20,15 @@ namespace Console.Abstractions
 			PutCharData putCharData
 		)
 		{
-			/*
 			if (console is Console sysConsole)
 			{
-				sysConsole.SetStateAsPutCharData(putCharData);
+				var oldState = sysConsole.GetStateAsPutCharData();
+                sysConsole.SetStateAsPutCharData(putCharData);
 				sysConsole.WriteLine(str);
+				sysConsole.SetStateAsPutCharData(oldState);
 
 				return console;
 			}
-			*/
 
 			return console.Write(str, putCharData)
 				.Write(Environment.NewLine, new PutCharData
@@ -47,15 +47,15 @@ namespace Console.Abstractions
 			PutCharData putCharData
 		)
 		{
-			/*
 			if (console is Console sysConsole)
 			{
+				var oldState = sysConsole.GetStateAsPutCharData();
 				sysConsole.SetStateAsPutCharData(putCharData);
 				sysConsole.Write(str);
+				sysConsole.SetStateAsPutCharData(oldState);
 
-				return console;
+                return console;
 			}
-			*/
 
 			var characters = str.ToCharArray();
 
