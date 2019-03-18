@@ -10,13 +10,27 @@ namespace Console.Abstractions
 	[PublicAPI]
 	public static class IConsoleExtensions
 	{
+		public static IConsole Clear(this IConsole console, PutCharData clearData, char clearChar = ' ')
+			=> console.Write(new string(clearChar, console.Width * console.Height), clearData);
+
 		public static IConsole WriteLine
 		(
 			this IConsole console,
 			string str,
 			PutCharData putCharData
 		)
-			=> console.Write(str, putCharData)
+		{
+			/*
+			if (console is Console sysConsole)
+			{
+				sysConsole.SetStateAsPutCharData(putCharData);
+				sysConsole.WriteLine(str);
+
+				return console;
+			}
+			*/
+
+			return console.Write(str, putCharData)
 				.Write(Environment.NewLine, new PutCharData
 				{
 					X = putCharData.X + str.Length,
@@ -24,6 +38,7 @@ namespace Console.Abstractions
 					Background = putCharData.Background,
 					Foreground = putCharData.Foreground
 				});
+		}
 
 		public static IConsole Write
 		(
@@ -32,6 +47,16 @@ namespace Console.Abstractions
 			PutCharData putCharData
 		)
 		{
+			/*
+			if (console is Console sysConsole)
+			{
+				sysConsole.SetStateAsPutCharData(putCharData);
+				sysConsole.Write(str);
+
+				return console;
+			}
+			*/
+
 			var characters = str.ToCharArray();
 
 			for (var chrIndex = 0; chrIndex < characters.Length; chrIndex++)
@@ -41,7 +66,7 @@ namespace Console.Abstractions
 				console.PutCharWithWrapping(chr, new PutCharData
 				{
 					X = chrIndex + putCharData.X,
-					Y = chrIndex + putCharData.Y,
+					Y = putCharData.Y,
 					Background = putCharData.Background,
 					Foreground = putCharData.Foreground
 				});

@@ -14,6 +14,8 @@ namespace Console.Abstractions
 
 		public override ConsoleKeyInfo ReadKey(bool intercept) => System.Console.ReadKey(intercept);
 
+		public override void Write(char chr) => System.Console.Write(chr);
+
 		public override void Write(string line) => System.Console.Write(line);
 
 		public override void Clear() => System.Console.Clear();

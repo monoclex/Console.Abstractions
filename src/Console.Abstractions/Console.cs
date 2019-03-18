@@ -7,19 +7,19 @@ using JetBrains.Annotations;
 
 namespace Console.Abstractions
 {
-	public abstract class Console : IConsole
+	public abstract class  Console : IConsole
 	{
 		public abstract ConsoleKeyInfo ReadKey(bool intercept);
 
 		public void PutChar(char character, PutCharData putCharData)
 		{
-			var oldPutCharData = GetStateAsPutCharData();
+			// var oldPutCharData = GetStateAsPutCharData();
 
 			SetStateAsPutCharData(putCharData);
 
 			Write(character.ToString());
 
-			SetStateAsPutCharData(oldPutCharData);
+			// SetStateAsPutCharData(oldPutCharData);
 		}
 
 		public abstract int Width { get; }
@@ -27,6 +27,11 @@ namespace Console.Abstractions
 		public abstract int Height { get; }
 
 		[NotNull] public abstract string ReadLine();
+
+		public virtual void Write([NotNull] char chr)
+		{
+			Write(chr.ToString());
+		}
 
 		public abstract void Write([NotNull] string line);
 
