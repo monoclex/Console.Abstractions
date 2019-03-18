@@ -135,7 +135,7 @@ namespace Console.Abstractions
 				_y++;
 			}
 
-			while (_y >= Height)
+			while (_y > Height)
 			{
 				_y -= Height;
 			}

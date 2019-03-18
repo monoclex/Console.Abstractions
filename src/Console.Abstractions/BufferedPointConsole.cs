@@ -12,6 +12,11 @@ namespace Console.Abstractions
 
 			_previousBuffer = new BufferState[_console.Width, _console.Height];
 			CurrentBuffer = new BufferState[_console.Width, _console.Height];
+
+			if (_console is IFlushable flushable)
+			{
+				flushable.Flush();
+			}
 		}
 
         private BufferState[,] _previousBuffer;
@@ -34,13 +39,13 @@ namespace Console.Abstractions
 
 		public void Flush()
 		{
-			SwapBuffers();
+            SwapBuffers();
 
 			if (_console is IFlushable flushable)
 			{
 				flushable.Flush();
 			}
-		}
+        }
 
 		private void SwapBuffers()
 		{

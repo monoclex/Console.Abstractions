@@ -11,7 +11,19 @@ namespace Console.Abstractions
 	public static class IConsoleExtensions
 	{
 		public static IConsole Clear(this IConsole console, PutCharData clearData, char clearChar = ' ')
-			=> console.Write(new string(clearChar, console.Width * console.Height), clearData);
+		{
+			if (console is Console sysConsole)
+			{
+				sysConsole.Clear();
+			}
+			else
+			{
+				console.Write(new string(clearChar, console.Width * console.Height), clearData);
+				console.PutChar(' ', clearData);
+			}
+
+			return console;
+		}
 
 		public static IConsole WriteLine
 		(
@@ -27,7 +39,7 @@ namespace Console.Abstractions
 				sysConsole.WriteLine(str);
 				sysConsole.SetStateAsPutCharData(oldState);
 
-				return console;
+                return console;
 			}
 
 			return console.Write(str, putCharData)
@@ -50,7 +62,7 @@ namespace Console.Abstractions
 			if (console is Console sysConsole)
 			{
 				var oldState = sysConsole.GetStateAsPutCharData();
-				sysConsole.SetStateAsPutCharData(putCharData);
+                sysConsole.SetStateAsPutCharData(putCharData);
 				sysConsole.Write(str);
 				sysConsole.SetStateAsPutCharData(oldState);
 
