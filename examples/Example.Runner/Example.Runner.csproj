@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Example.BouncingBox\Example.BouncingBox.csproj" />
+    <ProjectReference Include="..\Example.Core\Example.Core.csproj" />
+    <ProjectReference Include="..\Example.MovingText\Example.MovingText.csproj" />
+    <ProjectReference Include="..\..\src\Console.Abstractions\Console.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
