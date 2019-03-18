@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console.Abstractions.Tests"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{63FFE4A7-5297-4ED9-B46E-8D2A215AD9E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example1", "Example1\Example1.csproj", "{49FE5A2D-C0E7-4E4E-A313-2E31E1590789}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example1", "examples\Example1\Example1.csproj", "{49FE5A2D-C0E7-4E4E-A313-2E31E1590789}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Console.Abstractions\Console.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Console.Abstractions\Console.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
