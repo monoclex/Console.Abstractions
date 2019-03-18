@@ -5,18 +5,18 @@ using JetBrains.Annotations;
 namespace Console.Abstractions
 {
 	/// <summary>
-    /// Used for writing a bunch of data in random places to the console,
-    /// and then upon flushing it, all the changed data gets written sequentially.
-    /// </summary>
+	/// Used for writing a bunch of data in random places to the console,
+	/// and then upon flushing it, all the changed data gets written sequentially.
+	/// </summary>
 	[PublicAPI]
 	public class BufferedPointConsole : IConsole, IFlushable
 	{
 		[NotNull] private readonly IConsole _console;
 
 		/// <summary>
-        /// Creates a new buffered point console.
-        /// </summary>
-        /// <param name="console">Where to flush data to.</param>
+		/// Creates a new buffered point console.
+		/// </summary>
+		/// <param name="console">Where to flush data to.</param>
 		public BufferedPointConsole([NotNull] IConsole console)
 		{
 			_console = console;
@@ -30,11 +30,11 @@ namespace Console.Abstractions
 			}
 		}
 
-        private BufferState[,] _previousBuffer;
+		private BufferState[,] _previousBuffer;
 
 		/// <summary>
-        /// The current buffer in use for writing data.
-        /// </summary>
+		/// The current buffer in use for writing data.
+		/// </summary>
 		public BufferState[,] CurrentBuffer;
 
 		/// <inheritdoc/>
@@ -42,31 +42,29 @@ namespace Console.Abstractions
 			=> _console.ReadKey(intercept);
 
 		/// <inheritdoc/>
-        public void PutChar(char character, PutCharData putCharData)
-		{
-			CurrentBuffer[putCharData.X, putCharData.Y] = new BufferState
+		public void PutChar(char character, PutCharData putCharData)
+			=> CurrentBuffer[putCharData.X, putCharData.Y] = new BufferState
 			{
 				Character = character,
 				PutCharData = putCharData
 			};
-		}
 
 		/// <inheritdoc/>
-        public int Width => _console.Width;
+		public int Width => _console.Width;
 
 		/// <inheritdoc/>
-        public int Height => _console.Height;
+		public int Height => _console.Height;
 
 		/// <inheritdoc/>
-        public void Flush()
+		public void Flush()
 		{
-            SwapBuffers();
+			SwapBuffers();
 
 			if (_console is IFlushable flushable)
 			{
 				flushable.Flush();
 			}
-        }
+		}
 
 		private void SwapBuffers()
 		{
@@ -86,7 +84,7 @@ namespace Console.Abstractions
 						_previousBuffer[x, y] = currentState;
 					}
 				}
-            }
+			}
 
 			// swap
 			var tmp = _previousBuffer;

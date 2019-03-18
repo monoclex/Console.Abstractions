@@ -3,18 +3,18 @@
 namespace Console.Abstractions
 {
 	/// <summary>
-    /// A state of some item in the buffer.
-    /// </summary>
+	/// A state of some item in the buffer.
+	/// </summary>
 	public struct BufferState : IEquatable<BufferState>
 	{
 		/// <summary>
-        /// The character it is.
-        /// </summary>
+		/// The character it is.
+		/// </summary>
 		public char Character;
 
 		/// <summary>
-        /// Info used for writing the char
-        /// </summary>
+		/// Info used for writing the char
+		/// </summary>
 		public PutCharData PutCharData;
 
 		/// <inheritdoc/>
@@ -22,7 +22,7 @@ namespace Console.Abstractions
 			=> Character == other.Character && PutCharData.Equals(other.PutCharData);
 
 		/// <inheritdoc/>
-        public override bool Equals(object obj)
+		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 
@@ -30,7 +30,7 @@ namespace Console.Abstractions
 		}
 
 		/// <inheritdoc/>
-        public override int GetHashCode()
+		public override int GetHashCode()
 		{
 			unchecked
 			{

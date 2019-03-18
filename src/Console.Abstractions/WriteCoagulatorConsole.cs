@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 using JetBrains.Annotations;
@@ -7,24 +6,22 @@ using JetBrains.Annotations;
 namespace Console.Abstractions
 {
 	/// <summary>
-    /// Coagulates a bunch of Write calls into a single write call
-    /// to minimize on the amount of calls.
-    /// </summary>
+	/// Coagulates a bunch of Write calls into a single write call
+	/// to minimize on the amount of calls.
+	/// </summary>
 	public class WriteCoagulatorConsole : Console, IFlushable
 	{
 		[NotNull] private readonly Console _console;
 
 		/// <summary>
-        /// Creates a new <see cref="WriteCoagulatorConsole"/> with the console.
-        /// </summary>
-        /// <param name="console">The console to coagulate write calls on.</param>
+		/// Creates a new <see cref="WriteCoagulatorConsole"/> with the console.
+		/// </summary>
+		/// <param name="console">The console to coagulate write calls on.</param>
 		public WriteCoagulatorConsole([NotNull] Console console)
-		{
-			_console = console;
-		}
+			=> _console = console;
 
 		/// <inheritdoc/>
-        public override ConsoleKeyInfo ReadKey(bool intercept)
+		public override ConsoleKeyInfo ReadKey(bool intercept)
 		{
 			Flush();
 
@@ -32,13 +29,13 @@ namespace Console.Abstractions
 		}
 
 		/// <inheritdoc/>
-        public override int Width => _console.Width;
+		public override int Width => _console.Width;
 
 		/// <inheritdoc/>
-        public override int Height => _console.Height;
+		public override int Height => _console.Height;
 
 		/// <inheritdoc/>
-        public override string ReadLine()
+		public override string ReadLine()
 		{
 			Flush();
 
@@ -46,19 +43,15 @@ namespace Console.Abstractions
 		}
 
 		/// <inheritdoc/>
-        public override void Write(char chr)
-		{
-			_buffer.Append(chr);
-		}
+		public override void Write(char chr)
+			=> _buffer.Append(chr);
 
 		/// <inheritdoc/>
-        public override void Write(string line)
-		{
-			_buffer.Append(line);
-		}
+		public override void Write(string line)
+			=> _buffer.Append(line);
 
 		/// <inheritdoc/>
-        public override void Clear()
+		public override void Clear()
 		{
 			_console.Clear();
 
@@ -66,43 +59,43 @@ namespace Console.Abstractions
 		}
 
 		/// <inheritdoc/>
-        public override int X
+		public override int X
 		{
 			get => _console.X;
 			set
 			{
-                Flush();
+				Flush();
 
 				_console.X = value;
-            }
+			}
 		}
 
 		/// <inheritdoc/>
-        public override int Y
+		public override int Y
 		{
 			get => _console.Y;
 			set
 			{
-                Flush();
+				Flush();
 
 				_console.Y = value;
 			}
 		}
 
 		/// <inheritdoc/>
-        public override ConsoleColor Foreground
+		public override ConsoleColor Foreground
 		{
 			get => _console.Foreground;
 			set
 			{
-                Flush();
+				Flush();
 
 				_console.Foreground = value;
 			}
 		}
 
 		/// <inheritdoc/>
-        public override ConsoleColor Background
+		public override ConsoleColor Background
 		{
 			get => _console.Background;
 			set
@@ -116,7 +109,7 @@ namespace Console.Abstractions
 		private StringBuilder _buffer = new StringBuilder(0xFFFF);
 
 		/// <inheritdoc/>
-        public void Flush()
+		public void Flush()
 		{
 			// the fg will get set, then the bg
 			// they will both trigger flush

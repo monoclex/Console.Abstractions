@@ -34,8 +34,7 @@ namespace Console.Abstractions.Tests
 		[Fact]
 		public void GetPutCharData()
 		{
-			var mock = new MockConsole
-			{
+			var mock = new MockConsole {
 				X = 7,
 				Y = 2,
 				Background = ConsoleColor.DarkGreen,
@@ -46,8 +45,7 @@ namespace Console.Abstractions.Tests
 
 			putCharData
 				.Should()
-				.BeEquivalentTo(new PutCharData
-				{
+				.BeEquivalentTo(new PutCharData {
 					X = 7,
 					Y = 2,
 					Background = ConsoleColor.DarkGreen,
@@ -60,8 +58,7 @@ namespace Console.Abstractions.Tests
 		{
 			var mock = new MockConsole();
 
-			mock.SetStateAsPutCharData(new PutCharData
-			{
+			mock.SetStateAsPutCharData(new PutCharData {
 				X = 3,
 				Y = 9,
 				Background = ConsoleColor.DarkMagenta,
@@ -106,16 +103,14 @@ namespace Console.Abstractions.Tests
 		[Fact]
 		public void PutChar()
 		{
-			var mock = new PutCharMock
-			{
+			var mock = new PutCharMock {
 				X = 2,
 				Y = 9,
 				Background = ConsoleColor.Blue,
 				Foreground = ConsoleColor.DarkGray
 			};
 
-			mock.OnWrite = () =>
-			{
+			mock.OnWrite = () => {
 				mock.X.Should().Be(8);
 				mock.Y.Should().Be(5);
 				mock.Background.Should().Be(ConsoleColor.DarkMagenta);
@@ -124,8 +119,7 @@ namespace Console.Abstractions.Tests
 				mock.Line.Should().Be("E");
 			};
 
-			mock.PutChar('E', new PutCharData
-			{
+			mock.PutChar('E', new PutCharData {
 				X = 8,
 				Y = 5,
 				Background = ConsoleColor.DarkMagenta,

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 using JetBrains.Annotations;
 
@@ -8,23 +6,23 @@ namespace Console.Abstractions
 {
 	/// <summary>
 	/// Allows an area of the original console to be drawn on.
-    /// </summary>
+	/// </summary>
 	[PublicAPI]
-    public class ConsolePiece : IConsole
-    {
+	public class ConsolePiece : IConsole
+	{
 		[NotNull] private readonly IConsole _console;
 		private readonly int _sourceX;
 		private readonly int _sourceY;
 
-        /// <summary>
-        /// Creates a <see cref="ConsolePiece"/>
-        /// </summary>
-        /// <param name="console">The main console.</param>
-        /// <param name="sourceX">The X position of the real console.</param>
-        /// <param name="sourceY">The Y position of the real console.</param>
-        /// <param name="sourceWidth">The width of the console piece.</param>
-        /// <param name="sourceHeight">The height of the console piece.</param>
-        public ConsolePiece
+		/// <summary>
+		/// Creates a <see cref="ConsolePiece"/>
+		/// </summary>
+		/// <param name="console">The main console.</param>
+		/// <param name="sourceX">The X position of the real console.</param>
+		/// <param name="sourceY">The Y position of the real console.</param>
+		/// <param name="sourceWidth">The width of the console piece.</param>
+		/// <param name="sourceHeight">The height of the console piece.</param>
+		public ConsolePiece
 		(
 			[NotNull] IConsole console,
 			int sourceX,
@@ -42,11 +40,11 @@ namespace Console.Abstractions
 		}
 
 		/// <inheritdoc/>
-        public ConsoleKeyInfo ReadKey(bool intercept)
+		public ConsoleKeyInfo ReadKey(bool intercept)
 			=> _console.ReadKey(intercept);
 
 		/// <inheritdoc/>
-        public void PutChar(char character, PutCharData putCharData)
+		public void PutChar(char character, PutCharData putCharData)
 			=> _console.PutChar(character, new PutCharData
 			{
 				X = putCharData.X + _sourceX,
@@ -56,9 +54,9 @@ namespace Console.Abstractions
 			});
 
 		/// <inheritdoc/>
-        public int Width { get; }
+		public int Width { get; }
 
 		/// <inheritdoc/>
-        public int Height { get; }
+		public int Height { get; }
 	}
 }

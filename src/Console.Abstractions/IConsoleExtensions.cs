@@ -8,18 +8,18 @@ using JetBrains.Annotations;
 namespace Console.Abstractions
 {
 	/// <summary>
-    /// Extensions for an <see cref="IConsole"/>
-    /// </summary>
+	/// Extensions for an <see cref="IConsole"/>
+	/// </summary>
 	[PublicAPI]
 	public static class IConsoleExtensions
 	{
 		/// <summary>
-        /// Clears the console, by writing a giant blank string to it.
-        /// </summary>
-        /// <param name="console">The console.</param>
-        /// <param name="clearData">Data about the clear.</param>
-        /// <param name="clearChar">The character to use when clearing.</param>
-        /// <returns>The same console.</returns>
+		/// Clears the console, by writing a giant blank string to it.
+		/// </summary>
+		/// <param name="console">The console.</param>
+		/// <param name="clearData">Data about the clear.</param>
+		/// <param name="clearChar">The character to use when clearing.</param>
+		/// <returns>The same console.</returns>
 		public static IConsole Clear
 		(
 			[NotNull] this IConsole console,
@@ -42,12 +42,12 @@ namespace Console.Abstractions
 		}
 
 		/// <summary>
-        /// Writes a line with the string given to the console.
-        /// </summary>
-        /// <param name="console">The console.</param>
-        /// <param name="str">The string.</param>
-        /// <param name="putCharData">Data about the line.</param>
-        /// <returns>The same console.</returns>
+		/// Writes a line with the string given to the console.
+		/// </summary>
+		/// <param name="console">The console.</param>
+		/// <param name="str">The string.</param>
+		/// <param name="putCharData">Data about the line.</param>
+		/// <returns>The same console.</returns>
 		public static IConsole WriteLine
 		(
 			[NotNull] this IConsole console,
@@ -58,11 +58,11 @@ namespace Console.Abstractions
 			if (console is Console sysConsole)
 			{
 				var oldState = sysConsole.GetStateAsPutCharData();
-                sysConsole.SetStateAsPutCharData(putCharData);
+				sysConsole.SetStateAsPutCharData(putCharData);
 				sysConsole.WriteLine(str);
 				sysConsole.SetStateAsPutCharData(oldState);
 
-                return console;
+				return console;
 			}
 
 			return console.Write(str, putCharData)
@@ -76,12 +76,12 @@ namespace Console.Abstractions
 		}
 
 		/// <summary>
-        /// Writes a string to the console.
-        /// </summary>
-        /// <param name="console">The console.</param>
-        /// <param name="str">The string.</param>
-        /// <param name="putCharData">Data about the string.</param>
-        /// <returns>The same console.</returns>
+		/// Writes a string to the console.
+		/// </summary>
+		/// <param name="console">The console.</param>
+		/// <param name="str">The string.</param>
+		/// <param name="putCharData">Data about the string.</param>
+		/// <returns>The same console.</returns>
 		public static IConsole Write
 		(
 			[NotNull] this IConsole console,
@@ -92,11 +92,11 @@ namespace Console.Abstractions
 			if (console is Console sysConsole)
 			{
 				var oldState = sysConsole.GetStateAsPutCharData();
-                sysConsole.SetStateAsPutCharData(putCharData);
+				sysConsole.SetStateAsPutCharData(putCharData);
 				sysConsole.Write(str);
 				sysConsole.SetStateAsPutCharData(oldState);
 
-                return console;
+				return console;
 			}
 
 			var characters = str.ToCharArray();
@@ -118,15 +118,15 @@ namespace Console.Abstractions
 		}
 
 		/// <summary>
-        /// Puts a single character on the console
-        /// at any given X or Y, negative or positive,
-        /// by wrapping the coordinates around until
-        /// they're in bounds.
-        /// </summary>
-        /// <param name="console">The console.</param>
-        /// <param name="character">The character to put.</param>
-        /// <param name="putCharData">Data about the character.</param>
-        /// <returns>The same console.</returns>
+		/// Puts a single character on the console
+		/// at any given X or Y, negative or positive,
+		/// by wrapping the coordinates around until
+		/// they're in bounds.
+		/// </summary>
+		/// <param name="console">The console.</param>
+		/// <param name="character">The character to put.</param>
+		/// <param name="putCharData">Data about the character.</param>
+		/// <returns>The same console.</returns>
 		public static IConsole PutCharWithWrapping
 		(
 			[NotNull] this IConsole console,

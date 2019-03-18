@@ -1,14 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
+﻿using Console.Abstractions;
 
-using Console.Abstractions;
+using System;
 
 namespace Example1
 {
-	class Program
+	internal class Program
 	{
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
 			var sysConsole = new SystemConsole();
 			var console = sysConsole; // Helpers.CacheEnMasse(sysConsole, out var sysTelemetry, out var frontTelemetry);
@@ -65,7 +63,7 @@ namespace Example1
 			sysConsole.ReadKey(true);
 		}
 
-		static void DrawBorder(IConsole console, ConsoleColor bg, ConsoleColor fg)
+		private static void DrawBorder(IConsole console, ConsoleColor bg, ConsoleColor fg)
 		{
 			console.Clear(new PutCharData
 			{

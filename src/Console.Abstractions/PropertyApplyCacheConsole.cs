@@ -1,46 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 using JetBrains.Annotations;
 
 namespace Console.Abstractions
 {
 	/// <summary>
-    /// Only applies properties to the console when writing or reading.
-    /// </summary>
+	/// Only applies properties to the console when writing or reading.
+	/// </summary>
 	public class PropertyApplyCacheConsole : Console
 	{
 		[NotNull] private readonly Console _console;
 
 		/// <summary>
-        /// Creates a new <see cref="PropertyApplyCacheConsole"/>
-        /// </summary>
-        /// <param name="propertyCacheConsole"></param>
+		/// Creates a new <see cref="PropertyApplyCacheConsole"/>
+		/// </summary>
+		/// <param name="propertyCacheConsole"></param>
 		public PropertyApplyCacheConsole([NotNull] PropertyCacheConsole propertyCacheConsole)
-			: this((Console)propertyCacheConsole)
+			: this((Console) propertyCacheConsole)
 		{
 		}
 
 		/// <summary>
-        /// Most likely the incorrect method to use.
-        /// This class is designed in mind to be used
-        /// with a <see cref="PropertyCacheConsole"/>,
-        /// so it may be in your best interests to use both.
-        /// </summary>
-        /// <param name="console">The console to use.</param>
+		/// Most likely the incorrect method to use.
+		/// This class is designed in mind to be used
+		/// with a <see cref="PropertyCacheConsole"/>,
+		/// so it may be in your best interests to use both.
+		/// </summary>
+		/// <param name="console">The console to use.</param>
 		[Obsolete("You might be using the PropertyApplyCacheConsole incorrently."
-			+ "Try paas in a PropertyCacheConsole instead to the constructor,"
-			+ "instead of using the generic Console constructor, as that's the ideal usage.")]
+				+ "Try paas in a PropertyCacheConsole instead to the constructor,"
+				+ "instead of using the generic Console constructor, as that's the ideal usage.")]
 		public PropertyApplyCacheConsole([NotNull] Console console)
 		{
-            _console = console;
+			_console = console;
 
 			GetProperties();
 		}
 
 		/// <inheritdoc/>
-        public override ConsoleKeyInfo ReadKey(bool intercept)
+		public override ConsoleKeyInfo ReadKey(bool intercept)
 		{
 			SetProperties();
 
@@ -58,7 +56,7 @@ namespace Console.Abstractions
 		public override int Height => _console.Height;
 
 		/// <inheritdoc/>
-        public override string ReadLine()
+		public override string ReadLine()
 		{
 			SetProperties();
 
@@ -70,46 +68,46 @@ namespace Console.Abstractions
 		}
 
 		/// <inheritdoc/>
-        public override void Write(char chr)
+		public override void Write(char chr)
 		{
 			SetProperties();
 
 			_console.Write(chr);
 
 			GetProperties();
-        }
+		}
 
 		/// <inheritdoc/>
-        public override void Write(string line)
+		public override void Write(string line)
 		{
 			SetProperties();
 
 			_console.Write(line);
 
 			GetProperties();
-        }
+		}
 
 		/// <inheritdoc/>
-        public override void Clear()
+		public override void Clear()
 		{
 			SetProperties();
 
 			_console.Clear();
 
 			GetProperties();
-        }
+		}
 
 		/// <inheritdoc/>
-        public override int X { get; set; }
+		public override int X { get; set; }
 
 		/// <inheritdoc/>
-        public override int Y { get; set; }
+		public override int Y { get; set; }
 
 		/// <inheritdoc/>
-        public override ConsoleColor Foreground { get; set; }
+		public override ConsoleColor Foreground { get; set; }
 
 		/// <inheritdoc/>
-        public override ConsoleColor Background { get; set; }
+		public override ConsoleColor Background { get; set; }
 
 		private void GetProperties()
 		{
@@ -117,7 +115,7 @@ namespace Console.Abstractions
 			Y = _console.Y;
 			Foreground = _console.Foreground;
 			Background = _console.Background;
-        }
+		}
 
 		private void SetProperties()
 		{
@@ -125,6 +123,6 @@ namespace Console.Abstractions
 			_console.Y = Y;
 			_console.Foreground = Foreground;
 			_console.Background = Background;
-        }
+		}
 	}
 }

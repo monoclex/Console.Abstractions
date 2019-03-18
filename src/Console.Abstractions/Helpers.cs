@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Console.Abstractions
+﻿namespace Console.Abstractions
 {
 	/// <summary>
-    /// Helps create consoles.
-    /// </summary>
-    public static class Helpers
-    {
+	/// Helps create consoles.
+	/// </summary>
+	public static class Helpers
+	{
 		/// <summary>
-        /// Creates a <see cref="BufferedPointConsole"/> that utilizes
-        /// the multiple built-in console caching techniques properly
-        /// to minimize the amount of calls made to the original console.
-        /// </summary>
-        /// <param name="main">The console to cache en masse.</param>
-        /// <returns>A <see cref="BufferedPointConsole"/> with layers of caching.</returns>
+		/// Creates a <see cref="BufferedPointConsole"/> that utilizes
+		/// the multiple built-in console caching techniques properly
+		/// to minimize the amount of calls made to the original console.
+		/// </summary>
+		/// <param name="main">The console to cache en masse.</param>
+		/// <returns>A <see cref="BufferedPointConsole"/> with layers of caching.</returns>
 		public static BufferedPointConsole CacheEnMasse(Console main)
 		{
 			// this will coagulate multiple writes into a single write
@@ -51,7 +47,8 @@ namespace Console.Abstractions
 		/// <param name="mainTelemetry">Telemetry console used for viewing the total calls to the <paramref name="main"/> console.</param>
 		/// <param name="frontTelemetry">Front-end telemetry console used for viewing the total traffic coming from the <see cref="BufferedPointConsole"/>.</param>
 		/// <returns>A <see cref="BufferedPointConsole"/> with layers of caching.</returns>
-		public static BufferedPointConsole CacheEnMasse(Console main, out TelemetryConsole mainTelemetry, out TelemetryConsole frontTelemetry)
+		public static BufferedPointConsole CacheEnMasse
+			(Console main, out TelemetryConsole mainTelemetry, out TelemetryConsole frontTelemetry)
 		{
 			// same as CacheEnMasse but with telemetry
 
@@ -73,5 +70,5 @@ namespace Console.Abstractions
 
 			return bufferedPointConsole;
 		}
-    }
+	}
 }
