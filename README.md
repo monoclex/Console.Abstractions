@@ -1,5 +1,5 @@
 # Console.Abstractions
-Simple, versatile, universal abstractions for the console, and bringing performance improvements to the table by minimizing the amount of console calls.
+Simple, versatile, universal abstractions for the console, and bringing performance improvements to the table by minimizing as many console calls as possible.
 
 ```
 PM> Package-Install Console.Abstractions -pre

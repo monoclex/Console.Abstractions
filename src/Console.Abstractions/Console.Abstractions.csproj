@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>SirJosh3197</Authors>
+    <Company>SirJosh3197</Company>
+    <Description>Simple, versatile, universal abstractions for the console, and bringing performance improvements to the table by minimizing as many console calls as possible.</Description>
+    <Copyright>SirJosh3917 (c) 2019</Copyright>
+    <PackageLicenseUrl>https://github.com/SirJosh3917/Console.Abstractions/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/SirJosh3917/Console.Abstractions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/SirJosh3917/Console.Abstractions</RepositoryUrl>
+    <PackageTags>console, c#, UI, abstract, fast</PackageTags>
+    <PackageReleaseNotes>inital pre-release</PackageReleaseNotes>
+    <Version>1.0.0-pre</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
