@@ -18,8 +18,8 @@ Why would you need such a thing? Doesn't the system console work well enough?
 
 Take a look at this routine implemented purely with the console:
 
-![](https://rawcdn.githack.com/SirJosh3917/Console.Abstractions/blob/master/github-assets/system_console.gif)
+![](https://rawcdn.githack.com/SirJosh3917/Console.Abstractions/55e6b3c9f0ed0d8a4fff4c54f3700d3520d92387/github-assets/system_console.gif)
 
 Now look at the exact same routine, but just using `Helpers.CacheEnMasse(new SystemConsle())`:
 
-![](https://rawcdn.githack.com/SirJosh3917/Console.Abstractions/blob/master/github-assets/console_abstractions_cache_en_masse.gif)
+![](https://rawcdn.githack.com/SirJosh3917/Console.Abstractions/55e6b3c9f0ed0d8a4fff4c54f3700d3520d92387/github-assets/console_abstractions_cache_en_masse.gif)
