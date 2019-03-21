@@ -27,6 +27,9 @@ namespace Console.Abstractions
 		/// </summary>
 		public ConsoleColor Foreground;
 
+		// these equality methods were auto generated,
+		// leaving them untested
+
 		public bool Equals(PutCharData other)
 			=> X == other.X && Y == other.Y && Background == other.Background && Foreground == other.Foreground;
 

@@ -47,6 +47,8 @@ namespace Console.Abstractions.Tests
 
 		[Fact] public void Write() => WithTempOut(WriteTest);
 
+		[Fact] public void WriteChar() => WithTempOut(WriteCharTest);
+
 		private void ClearTest()
 		{
 			System.Console.SetOut(new StringWriter());
@@ -77,6 +79,25 @@ namespace Console.Abstractions.Tests
 				output
 					.Should()
 					.Be("test, more test");
+			}
+		}
+
+		private void WriteCharTest()
+		{
+			using (var sw = new StringWriter())
+			{
+				System.Console.SetOut(sw);
+
+				var console = new SystemConsole();
+
+				console.Write('E');
+				console.Write('F');
+
+				var output = sw.ToString();
+
+				output
+					.Should()
+					.Be("EF");
 			}
 		}
 

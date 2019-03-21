@@ -15,9 +15,6 @@ namespace Console.Abstractions
 		{
 			_console = console;
 
-			Width = _console.Width;
-			Height = _console.Height;
-
 			XTelemetry = new Telemetry<int>(() => _console.X, value => _console.X = value);
 			YTelemetry = new Telemetry<int>(() => _console.Y, value => _console.Y = value);
 
@@ -33,10 +30,10 @@ namespace Console.Abstractions
 			=> _console.ReadKey(intercept);
 
 		/// <inheritdoc/>
-		public override int Width { get; }
+		public override int Width => _console.Width;
 
 		/// <inheritdoc/>
-		public override int Height { get; }
+		public override int Height => _console.Height;
 
 		/// <inheritdoc/>
 		public override string ReadLine()

@@ -13,6 +13,7 @@
     <PackageReleaseNotes>inital pre-release</PackageReleaseNotes>
     <Version>1.0.0-pre</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
