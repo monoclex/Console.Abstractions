@@ -54,6 +54,9 @@ namespace Console.Abstractions
 		public override int Height => System.Console.WindowHeight;
 
 		/// <inheritdoc/>
+		public override bool KeyAvailable => System.Console.KeyAvailable;
+
+		/// <inheritdoc/>
 		public override ConsoleColor Foreground
 		{
 			get => System.Console.ForegroundColor;

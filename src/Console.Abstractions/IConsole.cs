@@ -36,5 +36,8 @@ namespace Console.Abstractions
 		/// The height of the console.
 		/// </summary>
 		int Height { get; }
+
+		/// <inheritdoc cref="System.Console.KeyAvailable"/>
+		bool KeyAvailable { get; }
 	}
 }
