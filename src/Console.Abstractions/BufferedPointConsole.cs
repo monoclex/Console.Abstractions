@@ -57,7 +57,7 @@ namespace Console.Abstractions
 
 		/// <inheritdoc/>
 		public bool KeyAvailable
-			=> System.Console.KeyAvailable;
+			=> _console.KeyAvailable;
 
         /// <inheritdoc/>
         public void Flush()

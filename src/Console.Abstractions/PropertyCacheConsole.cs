@@ -85,6 +85,9 @@ namespace Console.Abstractions
 		/// <inheritdoc/>
 		public override int Height { get; }
 
+		/// <inheritdoc/>
+		public override bool KeyAvailable => _console.KeyAvailable;
+
 		private int _x;
 
 		/// <inheritdoc/>
