@@ -35,6 +35,9 @@ namespace Console.Abstractions
 		public override int Height => _console.Height;
 
 		/// <inheritdoc/>
+		public override bool KeyAvailable => _console.KeyAvailable;
+
+		/// <inheritdoc/>
 		public override string ReadLine()
 		{
 			Flush();

@@ -35,6 +35,9 @@ namespace Console.Abstractions
 		/// <inheritdoc/>
 		public abstract int Height { get; }
 
+		/// <inheritdoc/>
+		public abstract bool KeyAvailable { get; }
+
 		/// <summary>
 		/// Reads a line from the console.
 		/// </summary>

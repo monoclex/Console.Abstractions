@@ -58,5 +58,9 @@ namespace Console.Abstractions
 
 		/// <inheritdoc/>
 		public int Height { get; }
+
+		/// <inheritdoc cref="System.Console.KeyAvailable"/>
+		public bool KeyAvailable
+			=> _console.KeyAvailable;
 	}
 }
