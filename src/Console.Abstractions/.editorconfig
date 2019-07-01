@@ -6,7 +6,9 @@
 #Core editorconfig formatting - indentation
 
 #use hard tabs for indentation
-indent_style = tabs
+
+# for some reason this was causing issues with my vs instance
+# indent_style = tabs
 
 #Formatting - organize using options
 

@@ -16,7 +16,7 @@ namespace Console.Abstractions
 		/// </summary>
 		/// <param name="propertyCacheConsole"></param>
 		public PropertyApplyCacheConsole([NotNull] PropertyCacheConsole propertyCacheConsole)
-			: this((Console) propertyCacheConsole)
+			: this((Console)propertyCacheConsole)
 		{
 		}
 

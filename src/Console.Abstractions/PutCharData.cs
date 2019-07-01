@@ -46,8 +46,8 @@ namespace Console.Abstractions
 			{
 				var hashCode = X;
 				hashCode = (hashCode * 397) ^ Y;
-				hashCode = (hashCode * 397) ^ (int) Background;
-				hashCode = (hashCode * 397) ^ (int) Foreground;
+				hashCode = (hashCode * 397) ^ (int)Background;
+				hashCode = (hashCode * 397) ^ (int)Foreground;
 
 				return hashCode;
 			}

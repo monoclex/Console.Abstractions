@@ -59,8 +59,8 @@ namespace Console.Abstractions
 		public bool KeyAvailable
 			=> _console.KeyAvailable;
 
-        /// <inheritdoc/>
-        public void Flush()
+		/// <inheritdoc/>
+		public void Flush()
 		{
 			SwapBuffers();
 
