@@ -56,7 +56,11 @@ namespace Console.Abstractions
 		public int Height => _console.Height;
 
 		/// <inheritdoc/>
-		public void Flush()
+		public bool KeyAvailable
+			=> System.Console.KeyAvailable;
+
+        /// <inheritdoc/>
+        public void Flush()
 		{
 			SwapBuffers();
 

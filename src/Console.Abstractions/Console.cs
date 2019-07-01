@@ -35,11 +35,15 @@ namespace Console.Abstractions
 		/// <inheritdoc/>
 		public abstract int Height { get; }
 
-		/// <summary>
-		/// Reads a line from the console.
-		/// </summary>
-		/// <returns>The read line.</returns>
-		[NotNull]
+		/// <inheritdoc/>
+		public bool KeyAvailable
+			=> System.Console.KeyAvailable;
+
+        /// <summary>
+        /// Reads a line from the console.
+        /// </summary>
+        /// <returns>The read line.</returns>
+        [NotNull]
 		public abstract string ReadLine();
 
 		/// <summary>
