@@ -29,6 +29,10 @@ namespace Console.Abstractions
 		public override void Write(string line)
 			=> System.Console.Write(line);
 
+        /// <inheritdoc cref="System.Console.KeyAvailable"/>
+        public bool KeyAvailable
+            => System.Console.KeyAvailable;
+
 		/// <inheritdoc/>
 		public override void Clear()
 			=> System.Console.Clear();
