@@ -39,11 +39,11 @@ namespace Console.Abstractions
 		public bool KeyAvailable
 			=> System.Console.KeyAvailable;
 
-        /// <summary>
-        /// Reads a line from the console.
-        /// </summary>
-        /// <returns>The read line.</returns>
-        [NotNull]
+		/// <summary>
+		/// Reads a line from the console.
+		/// </summary>
+		/// <returns>The read line.</returns>
+		[NotNull]
 		public abstract string ReadLine();
 
 		/// <summary>

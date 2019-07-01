@@ -62,5 +62,5 @@ namespace Console.Abstractions
 		/// <inheritdoc cref="System.Console.KeyAvailable"/>
 		public bool KeyAvailable
 			=> System.Console.KeyAvailable;
-    }
+	}
 }
