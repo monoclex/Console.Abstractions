@@ -154,6 +154,17 @@ namespace Console.Abstractions
 			return console;
 		}
 
+		/// <summary>
+		/// Converts an IConsole a BorderedConsole.
+		/// </summary>
+		/// <param name="console">The console to wrap with a border.</param>
+		/// <returns>The BorderedConsole</returns>
+		public static BorderedConsole ToBorderedConsole
+		(
+				[NotNull] this IConsole console
+		)
+			=> new BorderedConsole(console);
+
 		private static void WrapValueLower
 		(
 			ref int value,

@@ -20,8 +20,8 @@ namespace Console.Abstractions
 		// these equality methods were auto generated,
 		// leaving them untested
 
-        /// <inheritdoc/>
-        public bool Equals(BufferState other)
+		/// <inheritdoc/>
+		public bool Equals(BufferState other)
 			=> Character == other.Character && PutCharData.Equals(other.PutCharData);
 
 		/// <inheritdoc/>
